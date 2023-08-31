@@ -1,13 +1,13 @@
 import Product from "./Product";
 
-const ProductList = ({productArr}) => {
+const ProductList = ({productArr, setCart}) => {
 
   return (
-    <>
+    <div className="productContainer">
       {productArr.map((product, index) => (
-        <Product key={index} product={product}/>
+        <Product setCart={setCart} key={index} product={product}/>
       ))}
-    </>
+    </div>
   );
 };
 
