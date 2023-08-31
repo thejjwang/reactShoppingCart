@@ -19,12 +19,3 @@
   justify-content: space-around;
   align-items: center;
 }
-.modal {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.modal button {
-  width: 100px;
-  height: 50px;
-}
