@@ -29,11 +29,7 @@ function App() {
         <h1>Shopping List</h1>
       </div>
       <ProductList setCart={setCart} productArr={productArr}/>
-      <div className='eachItem'>
-        {cart.map((product, index) => 
-        <p key={index}>{product.name} - ${product.price}</p>)}
       <ShowCart cart={cart}/>
-      </div>
     </>
   )
 }
