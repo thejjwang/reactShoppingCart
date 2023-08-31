@@ -9,13 +9,6 @@
   justify-content: center;
   align-items: center;
 }
-.product {
-  width: 50px;
-  height: 100px;
-}
-.productContainer {
-  margin-top: 50px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+button {
+  background-color: rgb(243, 195, 195);
 }

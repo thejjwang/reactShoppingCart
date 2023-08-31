@@ -1,5 +1,5 @@
 import Product from "./Product";
-
+import "./Product.css"
 const ProductList = ({productArr, setCart}) => {
 
   return (

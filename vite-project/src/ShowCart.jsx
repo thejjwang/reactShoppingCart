@@ -7,6 +7,7 @@ const ShowCart = ({ cart }) => {
     const toggleModal = () => {
         setIsModalOpen(!isModalOpen);
     }
+    // reduce method 
     let totalPrice = cart.reduce((total, item) => total + parseFloat(item.price), 0).toFixed(2)
   return (
     <div className="modal">
