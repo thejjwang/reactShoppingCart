@@ -1,21 +1,27 @@
 import { useState } from "react";
 
 const ShowCart = ({ cart }) => {
-  const updateCart = (cart) => {};
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const toggleModal = () => {
+        setIsModalOpen(!isModalOpen);
+    }
 
   return (
     <div className="modal">
-      <button
-        onClick={() => {
-          updateCart({ cart });
-        }}
-      >
+      <button onClick={() => toggleModal()}>
         Show Cart
       </button>
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <p>Some text in the Modal..</p>
+      {isModalOpen && (
+        <div className="modal-content">
+        <span className="close">&times;</span>
+        <h2>Cart Items:</h2>
+        <ul>
+            {cart.map((item, index) => 
+            <li key={index}>{item.name} - ${item.price}</li>)}
+        </ul>
       </div>
+      )}
     </div>
   );
 };

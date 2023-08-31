@@ -30,7 +30,8 @@ function App() {
       </div>
       <ProductList setCart={setCart} productArr={productArr}/>
       <div className='eachItem'>
-        {cart.map((product) => <p>{product}</p>)}
+        {cart.map((product, index) => 
+        <p key={index}>{product.name} - ${product.price}</p>)}
       <ShowCart cart={cart}/>
       </div>
     </>
