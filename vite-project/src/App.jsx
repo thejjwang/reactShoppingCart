@@ -9,7 +9,14 @@ import { useState } from 'react'
 import './App.css'
 import ProductList from './ProductList';
 
-let productArr = [];
+let productArr = [
+  {name: "apple", price: 1.00},
+  {name: "shirt", price: 20.00},
+  {name: "milk", price: 2.99},
+  {name: "water", price: .50},
+  {name: "beer", price: 4.99},
+  {name: "steak", price: 15.00}
+];
 
 function App() {
   const [cart, setCart] = useState([]);

@@ -1,10 +1,11 @@
 import Product from "./Product";
 
 const ProductList = ({productArr}) => {
+    
   return (
     <>
       {productArr.forEach((product) => (
-        <Product />
+        <Product product={product}/>
       ))}
     </>
   );
