@@ -19,12 +19,12 @@
   justify-content: space-around;
   align-items: center;
 }
-.showCart {
+.modal {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.showCart button {
+.modal button {
   width: 100px;
   height: 50px;
 }

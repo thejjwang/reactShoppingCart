@@ -8,6 +8,8 @@
 import { useState } from 'react'
 import './App.css'
 import ProductList from './ProductList';
+import ShowCart from './ShowCart';
+
 
 let productArr = [
   {name: "apple", price: "1.00"},
@@ -27,12 +29,9 @@ function App() {
         <h1>Shopping List</h1>
       </div>
       <ProductList setCart={setCart} productArr={productArr}/>
-      <div className='modal'>
+      <div className='eachItem'>
         {cart.map((product) => <p>{product}</p>)}
-        {/* something to display cart */}
-      <div className='showCart'>
-        <button onClick={() => {}}>Show Cart</button>
-      </div>
+      <ShowCart cart={cart}/>
       </div>
     </>
   )
