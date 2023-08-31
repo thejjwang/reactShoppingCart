@@ -1,6 +1,11 @@
 .product {
   width: 50px;
   height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 .productContainer {
   margin-top: 50px;

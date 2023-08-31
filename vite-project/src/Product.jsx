@@ -4,7 +4,7 @@ const Product = ({ product, setCart }) => {
     return (
       <div className="product">
         <h3>{product.name}</h3>
-        <p>{product.price}</p>
+        <p>${product.price}</p>
         <button onClick={() => setCart((prevCart) => [...prevCart, product])}>
           Add to Cart
         </button>

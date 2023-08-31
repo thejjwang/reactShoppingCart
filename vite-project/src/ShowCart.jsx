@@ -16,7 +16,7 @@ const ShowCart = ({ cart }) => {
       </button>
       {isModalOpen && (
         <div className="modal-content">
-        <span className="close">&times;</span>
+        <span className="close"></span>
         <h2>Cart Items: {cart.length}</h2>
         <ul>
             {cart.map((item, index) => 
