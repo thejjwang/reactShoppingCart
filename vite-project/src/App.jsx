@@ -7,7 +7,6 @@
 
 import { useState } from 'react'
 import './App.css'
-import Product from './Product';
 import ProductList from './ProductList';
 
 let productArr = [];
@@ -17,10 +16,13 @@ function App() {
 
   return (
     <>
-      
-      {productArr.forEach((product) => (
-        <Product />
-      ))}
+      <div className='header'>
+        <h1>Shopping List</h1>
+      </div>
+      <ProductList productArr={productArr}/>
+      <div className='modal'>
+        {/* something to display cart */}
+      </div>
     </>
   )
 }
