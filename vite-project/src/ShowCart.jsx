@@ -7,7 +7,10 @@ const ShowCart = ({ cart }) => {
     const toggleModal = () => {
         setIsModalOpen(!isModalOpen);
     }
-    // reduce method 
+
+    //The reduce method is used to perform a specific operation on all elements 
+    // of an array and accumulate the result into a single value. It's like 
+    //"reducing" the array to a single value by applying an operation to each element.
     let totalPrice = cart.reduce((total, item) => total + parseFloat(item.price), 0).toFixed(2)
   return (
     <div className="modal">
