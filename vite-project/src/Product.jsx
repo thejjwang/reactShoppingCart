@@ -12,4 +12,4 @@ const Product = ({ product, setCart }) => {
     );
   };
 
-export default Product;
+export default Product; 

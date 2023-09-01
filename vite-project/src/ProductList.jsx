@@ -1,20 +1,25 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Product from "./Product";
 import "./Product.css"
+
 
 const ProductList = ({productArr, setCart}) => {
     const [products, setProducts] = useState([]);
 
-    const fetchProducts = async () => {
-        try {
-            let response = await fetch('http://localhost:3000/products');
-            let data = await response.json();
-            setProducts(data);
-        } catch (error){
-            console.log("error fetching products:" + error)
+    useEffect(()=> {
+        const fetchProducts = async () => {
+            try {
+                let response = await fetch('http://localhost:3000/products');
+                let data = await response.json();
+                setProducts(data);
+            } catch (error){
+                console.log("error fetching products:" + error)
+            }
         }
-    }
-    fetchProducts();
+        fetchProducts()
+    }, [])
+
+    
 
   return (
     <div className="productContainer">
