@@ -39,7 +39,7 @@ function App() {
     }
 }
 fetchProducts()
- 
+  
   return (
     <>
       <div className='header'>
