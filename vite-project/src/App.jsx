@@ -26,11 +26,15 @@ function App() {
   const [userPrice, setUserPrice] = useState([]);
 
   // post 
-  const fetchProducts = async () => {
+
+  const postProducts = async () => {
     try {
         let response = await fetch('http://localhost:3000/products', {
           method: "POST",
-
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
         });
         let data = await response.json();
         setProducts(data);
@@ -38,7 +42,7 @@ function App() {
         console.log("error fetching products:" + error)
     }
 }
-fetchProducts()
+postProducts()
   
   return (
     <>
