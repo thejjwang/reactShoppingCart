@@ -1,65 +1,90 @@
 // app component should hold useState and renders ProductList
-// should have state for the cart, 
+// should have state for the cart,
 // app will have product arr
 // productList only mapping over the products and displaying a product component for each item
-// product component will render each single product with name, price, button 
+// product component will render each single product with name, price, button
 // show cart by having a display component use modal for cart
 
-import { useState,useEffect } from 'react'
-import './App.css'
-import ProductList from './ProductList';
-import ShowCart from './ShowCart';
-
-
-// let productArr = [
-//   {name: "apple", price: "1.00"},
-//   {name: "shirt", price: "20.00"},
-//   {name: "milk", price: "2.99"},
-//   {name: "water", price: "0.50"},
-//   {name: "beer", price: "4.99"},
-//   {name: "steak", price: "15.00"}
-// ];
+import { useState, useEffect } from "react";
+import ProductList from "./ProductList";
+import ShowCart from "./ShowCart";
+import "./index.css";
 
 function App() {
   const [cart, setCart] = useState([]);
-  const [userItem, setUserItem] = useState([]);
-  const [userPrice, setUserPrice] = useState([]);
+  const [userItem, setUserItem] = useState("");
+  const [userPrice, setUserPrice] = useState("");
   const [products, setProducts] = useState([]);
-  // post 
 
-
-  const postProducts = async () => {
+  const addItemToDb = async (itemName, itemPrice) => {
     try {
-        let response = await fetch('http://localhost:3000/products', {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        });
-        let data = await response.json();
-        setProducts(data);
-    } catch (error){
-        console.log("error fetching products:" + error)
+      const newItem = {
+        name: itemName,
+        price: parseFloat(itemPrice).toFixed(2),
+      };
+
+      const response = await fetch("http://localhost:3000/products", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newItem),
+      });
+
+      if (response.ok) {
+        setProducts((prevProducts) => [...prevProducts, newItem]);
+        setUserItem(""); // Clear the input field for item name
+        setUserPrice(""); // Clear the input field for item price
+      } else {
+        console.log("Failed to add item to the database");
+      }
+    } catch (error) {
+      console.log("Error adding item:", error);
     }
-}
-postProducts()
-  
+  };
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/products");
+        if (response.ok) {
+          const data = await response.json();
+          setProducts(data.products); // Update the state with the products array
+        } else {
+          console.log("Failed to fetch products");
+        }
+      } catch (error) {
+        console.log("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
   return (
     <>
-      <div className='header'>
+      <div className="header">
         <h1>Shopping List</h1>
       </div>
-      <div className='addItemContainer'>
-        <input onChange={(e)=> setUserItem(e.target.value)} value={userItem} placeholder='Enter Item' />
-        <input onChange={(e)=> setUserPrice(e.target.value)} value={userPrice} placeholder='Enter Price' />
-        {/* need to make it so button fetch posts the new item and price */}
-        <button onClick={()=>console.log("")}>Add Item</button>
+      <div className="addItemContainer">
+        <input
+          onChange={(e) => setUserItem(e.target.value)}
+          value={userItem}
+          placeholder="Enter Item"
+        />
+        <input
+          onChange={(e) => setUserPrice(e.target.value)}
+          value={userPrice}
+          placeholder="Enter Price"
+        />
+        <button onClick={() => addItemToDb(userItem, userPrice)}>
+          Add Item
+        </button>
       </div>
-      <ProductList setCart={setCart}/>
-      <ShowCart cart={cart}/>
+      <ProductList setCart={setCart} products={products} />
+      <ShowCart cart={cart} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
