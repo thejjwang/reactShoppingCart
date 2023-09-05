@@ -64,15 +64,15 @@ function App() {
 
   return (
     <>
-      <div className="flex justify-center">
-        <h1>Shopping List</h1>
+      <div className="bg-blue-500 p-4 text-white text-center">
+        <h1 className="text-2xl font-bold">Shopping List</h1>
       </div>
       <div className="addItemContainer">
         <input
           onChange={(e) => setUserItem(e.target.value)}
           value={userItem}
           placeholder="Enter Item"
-          type="string"
+          type="text"
         />
         <input
           onChange={(e) => setUserPrice(e.target.value)}
