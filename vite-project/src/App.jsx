@@ -18,6 +18,10 @@ function App() {
 
   const addItemToDb = async (userItem, userPrice) => {
     try {
+      if (isNaN(userPrice)) {
+        console.log('Invalid price input');
+        return;
+      }
       const newItem = {
         name: userItem,
         price: parseFloat(userPrice).toFixed(2),
@@ -68,11 +72,13 @@ function App() {
           onChange={(e) => setUserItem(e.target.value)}
           value={userItem}
           placeholder="Enter Item"
+          type="string"
         />
         <input
           onChange={(e) => setUserPrice(e.target.value)}
           value={userPrice}
           placeholder="Enter Price"
+          type="number"
         />
         <button onClick={() => addItemToDb(userItem, userPrice)}>
           Add Item
