@@ -16,12 +16,12 @@ function App() {
   const [userPrice, setUserPrice] = useState("");
   const [products, setProducts] = useState([]);
 
-  const addItemToDb = async (itemName, itemPrice) => {
+  const addItemToDb = async (userItem, userPrice) => {
     try {
       const newItem = {
-        name: itemName,
-        price: parseFloat(itemPrice).toFixed(2),
-        id: products.length 
+        name: userItem,
+        price: parseFloat(userPrice).toFixed(2),
+        id: products.length,
       };
 
       const response = await fetch("http://localhost:3000/products", {
@@ -31,14 +31,9 @@ function App() {
         },
         body: JSON.stringify(newItem),
       });
-
-      if (response.ok) {
-        setProducts((prevProducts) => [...prevProducts, newItem]);
-        setUserItem(""); // Clear the input field for item name
-        setUserPrice(""); // Clear the input field for item price
-      } else {
-        console.log("Failed to add item to the database");
-      }
+      setProducts((prevProducts) => [...prevProducts, newItem]);
+      setUserItem("");
+      setUserPrice("");
     } catch (error) {
       console.log("Error adding item:", error);
     }
@@ -50,8 +45,8 @@ function App() {
         const response = await fetch("http://localhost:3000/products");
         if (response.ok) {
           const data = await response.json();
-          setProducts(data); // Update the state with the products array
-          console.log(products)
+          setProducts(data);
+          console.log(products);
         } else {
           console.log("Failed to fetch products");
         }
@@ -65,7 +60,7 @@ function App() {
 
   return (
     <>
-      <div className="header">
+      <div className="flex justify-center">
         <h1>Shopping List</h1>
       </div>
       <div className="addItemContainer">
