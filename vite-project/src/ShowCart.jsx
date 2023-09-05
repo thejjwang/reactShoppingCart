@@ -1,32 +1,46 @@
-import { useState } from "react";   
-import './ShowCart.css';
+import { useState } from "react";
+import "./ShowCart.css";
 
 const ShowCart = ({ cart }) => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const toggleModal = () => {
-        setIsModalOpen(!isModalOpen);
-    }
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
 
-    //The reduce method is used to perform a specific operation on all elements 
-    // of an array and accumulate the result into a single value. It's like 
-    //"reducing" the array to a single value by applying an operation to each element.
-    let totalPrice = cart.reduce((total, item) => total + parseFloat(item.price), 0).toFixed(2)
+  let totalPrice = cart.reduce(
+    (total, item) => total + parseFloat(item.price),
+    0
+  ).toFixed(2);
+
   return (
-    <div className="modal">
-      <button onClick={() => toggleModal()}>
+    <div className="relative">
+      <button
+        onClick={() => toggleModal()}
+        className="bg-blue-500 text-white text-2xl font-bold py-2 px-4 rounded-lg"
+      >
         Show Cart
       </button>
       {isModalOpen && (
-        <div className="modal-content">
-        <span className="close"></span>
-        <h2>Cart Items: {cart.length}</h2>
-        <ul>
-            {cart.map((item, index) => 
-            <li key={index}>{item.name} - ${item.price}</li>)}
-        </ul>
-        <h3>Total: ${totalPrice}</h3>
-      </div>
+        <div className="fixed inset-0 flex items-center justify-center modal-overlay bg-white bg-opacity-90 z-50">
+          <div className="modal active bg-white p-4 rounded-lg shadow-md max-w-4xl max-h-4xl overflow-auto">
+            <span
+              className="close absolute top-2 right-2 cursor-pointer"
+              onClick={() => toggleModal()}
+            >
+              Close
+            </span>
+            <h2 className="text-2xl font-bold mb-4">Cart Items: {cart.length}</h2>
+            <ul>
+              {cart.map((item, index) => (
+                <li key={index} className="mb-2">
+                  {item.name} - ${item.price}
+                </li>
+              ))}
+            </ul>
+            <h3 className="text-2xl font-bold mt-4">Total: ${totalPrice}</h3>
+          </div>
+        </div>
       )}
     </div>
   );
