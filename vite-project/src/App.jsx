@@ -21,6 +21,7 @@ function App() {
       const newItem = {
         name: itemName,
         price: parseFloat(itemPrice).toFixed(2),
+        id: products.length 
       };
 
       const response = await fetch("http://localhost:3000/products", {
@@ -49,7 +50,8 @@ function App() {
         const response = await fetch("http://localhost:3000/products");
         if (response.ok) {
           const data = await response.json();
-          setProducts(data.products); // Update the state with the products array
+          setProducts(data); // Update the state with the products array
+          console.log(products)
         } else {
           console.log("Failed to fetch products");
         }
