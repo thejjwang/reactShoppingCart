@@ -8,13 +8,12 @@ const ShowCart = ({ cart }) => {
     setIsModalOpen(!isModalOpen);
   };
 
-  let totalPrice = cart.reduce(
-    (total, item) => total + parseFloat(item.price),
-    0
-  ).toFixed(2);
+  let totalPrice = cart
+    .reduce((total, item) => total + parseFloat(item.price), 0)
+    .toFixed(2);
 
   return (
-    <div className="relative">
+    <div className="relative flex justify-center mt-10">
       <button
         onClick={() => toggleModal()}
         className="bg-blue-500 text-white text-2xl font-bold py-2 px-4 rounded-lg"
@@ -30,7 +29,9 @@ const ShowCart = ({ cart }) => {
             >
               Close
             </span>
-            <h2 className="text-2xl font-bold mb-4">Cart Items: {cart.length}</h2>
+            <h2 className="text-2xl font-bold mb-4">
+              Cart Items: {cart.length}
+            </h2>
             <ul>
               {cart.map((item, index) => (
                 <li key={index} className="mb-2">

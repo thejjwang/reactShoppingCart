@@ -67,7 +67,7 @@ function App() {
       <div className="bg-blue-500 p-4 text-white text-center">
         <h1 className="text-2xl font-bold">Shopping List</h1>
       </div>
-      <div className="flex justify-center mt-4 mb-10 mt-10">
+      <div className="flex justify-center mb-10 mt-10 gap-5">
         <input
           onChange={(e) => setUserItem(e.target.value)}
           value={userItem}
