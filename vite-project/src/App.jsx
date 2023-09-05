@@ -5,7 +5,7 @@
 // product component will render each single product with name, price, button 
 // show cart by having a display component use modal for cart
 
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import './App.css'
 import ProductList from './ProductList';
 import ShowCart from './ShowCart';
@@ -24,8 +24,9 @@ function App() {
   const [cart, setCart] = useState([]);
   const [userItem, setUserItem] = useState([]);
   const [userPrice, setUserPrice] = useState([]);
-
+  const [products, setProducts] = useState([]);
   // post 
+
 
   const postProducts = async () => {
     try {
