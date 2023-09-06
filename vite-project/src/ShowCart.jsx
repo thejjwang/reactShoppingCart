@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./ShowCart.css";
 
 const ShowCart = ({ cart }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);

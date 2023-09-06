@@ -5,7 +5,7 @@ const Product = ({ product, setCart }) => {
       <div className="product">
         <h3>{product.name}</h3>
         <p>${product.price}</p>
-        <button onClick={() => setCart((prevCart) => [...prevCart, product])}>
+        <button className="hover:border-2 border-sky-500" onClick={() => setCart((prevCart) => [...prevCart, product])}>
           Add to Cart
         </button>
       </div>
